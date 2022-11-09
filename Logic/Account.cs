@@ -7,10 +7,10 @@ public class Account
     private static Database db = new();
     public int ID { get; set; }
     public float Balance { get; set; }
-    public int AccountNumber { get; set; }
-    public List<User> user = new();
-    public List<Card> card = new();
-    public List<Transactions> transactions = new();
+    public string AccountNumber { get; set; }
+    public List<User> Users = new();
+    public List<Card> Cards = new();
+    public List<Transactions> Transactions = new();
 
     public bool Deposit(float amount)
     {
