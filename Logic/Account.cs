@@ -2,7 +2,7 @@ namespace Logic;
 
 using Dapper;
 
-public class BankAccount
+public class Account
 {
     private static Database db = new();
     public int ID { get; set; }
