@@ -61,4 +61,18 @@ public class Database
     {
         return Connection.Query<Transactions>($"SELECT id, date, amount FROM transaction WHERE account_id = {accountID}").ToList();
     }
+
+    public bool GetCard(string CardNumber)
+    {
+        var Cardfound = Connection.QuerySingleOrDefault($"SELECT COUNT(id) FROM card WHERE card_number = '{CardNumber}'");
+
+        if (Cardfound >= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
