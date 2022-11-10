@@ -13,10 +13,14 @@ public class Database
         Connection = new(connectionString);
     }
 
-    public List<Account> GetAllAccounts()
+    /// <summary>
+    /// Gets all accounts linked to USER by user ID
+    /// </summary>
+    /// <returns></returns>
+    public List<Account> GetUserAccounts(int userID)
     {
         List<Account> listAccounts = new();
-        var accounts = Connection.Query("SELECT account.id AS accountId, account.account_number AS accountNumber, account.balance as balance, user.id AS userId, card.id as cardId FROM account INNER JOIN account_user ON account.id = account_user.account_id INNER JOIN user ON account_user.user_id = user.id INNER JOIN card ON account.id = card.account_id").ToList();
+        var accounts = Connection.Query($"SELECT account.id AS accountId, account.account_number AS accountNumber, account.balance as balance, user.id AS userId, card.id as cardId FROM account INNER JOIN account_user ON account.id = account_user.account_id INNER JOIN user ON account_user.user_id = user.id INNER JOIN card ON account.id = card.account_id WHERE account_user.user_id = {userID}").ToList();
 
         foreach (var row in accounts)
         {
@@ -33,11 +37,21 @@ public class Database
         return listAccounts;
     }
 
+    /// <summary>
+    /// Gets all the users linked to an account
+    /// </summary>
+    /// <param name="userID">User ID</param>
+    /// <returns></returns>
     public List<User> GetUsersByID(int userID)
     {
         return Connection.Query<User>($"SELECT id, first_name AS FirstName, last_name AS LastName, personal_number AS PersonalNumber, address, phone_number AS PhoneNumber FROM user WHERE id = {userID}").ToList();
     }
 
+    /// <summary>
+    /// Gets all the cards linked to an account
+    /// </summary>
+    /// <param name="cardID">Card ID</param>
+    /// <returns>List of cards</returns>
     public List<Card> GetCardsByID(int cardID)
     {
         List<Card> listCards = new();
@@ -57,6 +71,11 @@ public class Database
         return listCards;
     }
 
+    /// <summary>
+    /// Gets transactions for one specific account.
+    /// </summary>
+    /// <param name="accountID">Account ID</param>
+    /// <returns>List of Transactions</returns>
     public List<Transactions> GetTransactions(int accountID)
     {
         return Connection.Query<Transactions>($"SELECT id, date, amount FROM transaction WHERE account_id = {accountID}").ToList();
