@@ -10,28 +10,35 @@ internal class Program
     {
         while (true)
         {
+            // Gets card number
             Console.Clear();
             Console.WriteLine("Enter your card number: ");
             string inputCardNumber = Console.ReadLine();
 
 
+            // Gets pin code
             if (db.CheckCard(inputCardNumber))
             {
                 Console.WriteLine("Enter your pin code");
                 string inputPin = Console.ReadLine();
+
+                // If pin code is wrong
                 if (db.GetCard(inputCardNumber, inputPin) == null)
                 {
                     PinTries++;
-
+                    // TODO lås kortet ifall användaren gjort 3 försök,
+                    // låt annars användaren försöka igen
                 }
+
+                // TODO Exita loopen om rätt pinkod skrivs in
 
             }
             else
             {
+                // If the card number doesn't exist
                 continue;
             }
         }
-
 
 
         bool running = true;
@@ -42,11 +49,12 @@ internal class Program
             Console.WriteLine("\t----- Welcome to your local bank -----");
             Console.WriteLine
             (
-            "[I]nsert\n" +
-            "[W]ithdraw\n" +
-            "[B]alance\n" +
-            "[H]istory\n" +
-            "[E]xit"
+            "[I]nsert\n" + // TODO Använd db.GetUserAccounts() för att hämta alla konton
+            "[W]ithdraw\n" + // TODO Använd db.GetAccount() för att endast hämta kontot som pengarna ska dras ifrån
+            "[B]alance\n" + // TODO Visa alla användarens konton tillsammans med deras saldo
+            "[H]istory\n" + // TODO Visa transaktioner för de olika kontona
+            "[E]xit" // TODO Ta användaren tillbaka till första sidan för att kunna mata in nytt kort
+                     // Eller avsluta applikationen
             );
 
             var keypress = Console.ReadKey().Key;
