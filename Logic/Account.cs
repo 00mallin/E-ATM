@@ -12,6 +12,11 @@ public class Account
     public List<Card> Cards = new();
     public List<Transactions> Transactions = new();
 
+    public override string ToString()
+    {
+        return Balance + " " + AccountNumber;
+    }
+
     public bool Deposit(float amount)
     {
         try
