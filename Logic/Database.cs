@@ -81,7 +81,7 @@ public class Database
         return Connection.Query<Transactions>($"SELECT id, date, amount FROM transaction WHERE account_id = {accountID}").ToList();
     }
 
-    public bool GetCard(string CardNumber)
+    public bool CheckCard(string CardNumber)
     {
         var Cardfound = Connection.QuerySingleOrDefault($"SELECT COUNT(id) FROM card WHERE card_number = '{CardNumber}'");
 
@@ -92,6 +92,10 @@ public class Database
         else
         {
             return false;
-        }
+        } 
+    }
+    public Account GetAccount(string accountID)
+    {
+        return Connection.QuerySingleOrDefault<Account>($"SELECT id, account_number AS AccountNumber, balance FROM account WHERE id = '{accountID}'");
     }
 }
