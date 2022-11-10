@@ -2,57 +2,111 @@
 
 internal class Program
 {
+    static Account account;
+    static Database db = new();
+    static int PinTries = 0;
+
     private static void Main(string[] args)
     {
-        bool running = true;
-        while(running)
+        while (true)
         {
-            var keypress = Convert.ToInt32(Console.ReadLine());
+            Console.Clear();
+            Console.WriteLine("Enter your card number: ");
+            string inputCardNumber = Console.ReadLine();
 
-                Console.WriteLine("\t----- Welcome to your local bank -----");
-                Console.WriteLine(
-                "[I]nsert\n" +
-                "[W]ithdraw\n" +
-                "[B]alance\n" + 
-                "[H]istory\n" + 
-                "[E]xit");
 
-            switch(keypress)
+            if (db.CheckCard(inputCardNumber))
             {
-                
-                
+                Console.WriteLine("Enter your pin code");
+                string inputPin = Console.ReadLine();
+                if (db.GetCard(inputCardNumber, inputPin) == null)
+                {
+                    PinTries++;
 
-                case 'I':
-                case 'i':
-                    Console.Write("Input the amount you would like to insert");
-                    Console.ReadLine();
+                }
+
+            }
+            else
+            {
+                continue;
+            }
+        }
+
+
+
+        bool running = true;
+        while (running)
+        {
+            Console.Clear();
+
+            Console.WriteLine("\t----- Welcome to your local bank -----");
+            Console.WriteLine
+            (
+            "[I]nsert\n" +
+            "[W]ithdraw\n" +
+            "[B]alance\n" +
+            "[H]istory\n" +
+            "[E]xit"
+            );
+
+            var keypress = Console.ReadKey().Key;
+
+            Console.WriteLine("Your chouce is: " + keypress.ToString() + "\nPleas whit");
+            Thread.Sleep(2000);
+
+            switch (keypress)
+            {
+                case ConsoleKey.I:
+                    InsertMoney();
                     break;
 
-                case 'W':
-                case 'w':
-                    Console.Write("Input the amout you would like to withdraw");
-                    Console.ReadLine();
+                case ConsoleKey.W:
+                    WithdrawMoney();
                     break;
 
-                case 'B':
-                case 'b':
+                case ConsoleKey.B:
                     Console.Write("Your balance is: ");
                     Console.ReadLine();
                     break;
 
-                case 'H':
-                case 'h':
-                    Console.Write("History of your transactions: " );
+                case ConsoleKey.H:
+                    Console.Write("History of your transactions: ");
                     break;
 
-                case 'E':
-                case 'e':
+                case ConsoleKey.E:
                     return;
-                    
-                default: 
+
+                default:
                     Console.WriteLine("There is no choice matching your input, please try again");
                     break;
             }
         }
+    } //Main
+
+
+    static void InsertMoney()
+    {
+        Console.Clear();
+
+        Console.Write("Input the amount you would like to insert: ");
+        float input = float.Parse(Console.ReadLine());
+
+        account.Deposit(input);
+
+        account.ToString();
+
     }
+
+    static void WithdrawMoney()
+    {
+        Console.Clear();
+
+        Console.Write("Input the amount you would like to draw: ");
+        float input = float.Parse(Console.ReadLine());
+
+        account.Withdraw(input);
+
+        account.ToString();
+    }
+
 }
