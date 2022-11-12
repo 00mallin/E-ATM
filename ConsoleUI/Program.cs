@@ -4,7 +4,7 @@ internal class Program
 {
     static Account account;
     static Database db = new();
-    static int PinTries = 0;
+    static int PinTries = 3;
 
     private static void Main(string[] args)
     {
@@ -19,18 +19,23 @@ internal class Program
             // Gets pin code
             if (db.CheckCard(inputCardNumber))
             {
-                Console.WriteLine("Enter your pin code");
-                string inputPin = Console.ReadLine();
-
                 // If pin code is wrong
-                if (db.GetCard(inputCardNumber, inputPin) == null)
+                // TODO lås kortet ifall användaren gjort 3 försök,
+                // låt annars användaren försöka igen
+                for (int i = 0; i < PinTries; i++)
                 {
-                    PinTries++;
-                    // TODO lås kortet ifall användaren gjort 3 försök,
-                    // låt annars användaren försöka igen
+                    Console.WriteLine("Enter your pin code");
+                    string inputPin = Console.ReadLine();
+                    if (i == PinTries)
+                    {
+                        break;   //Låsa kortet 
+                        Environment.Exit(1);
+                    }
+                    else if (db.GetCard(inputCardNumber, inputPin) != null)
+                    {
+                        // gå vidare
+                    }
                 }
-
-                // TODO Exita loopen om rätt pinkod skrivs in
 
             }
             else
