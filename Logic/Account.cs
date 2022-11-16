@@ -78,6 +78,9 @@ public class Account
 
     private void LogTransaction(float amount)
     {
-        db.Connection.Execute($"INSERT INTO transaction(amount, date, account_id) VALUES ({amount}, {DateTime.Now}, {ID})");
+        if (db.Connection.Execute($"INSERT INTO transaction(amount, date, account_id) VALUES ({amount}, {DateTime.Now}, {ID})") < 1)
+        {
+            throw new Exception(message: "Couldn't log the transaction!");
+        } 
     }
 }
