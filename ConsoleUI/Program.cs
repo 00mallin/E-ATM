@@ -3,6 +3,7 @@
 internal class Program
 {
     static Account account;
+    static Card card;
     static Database db = new();
     static int PinTries = 3;
 
@@ -26,14 +27,18 @@ internal class Program
                 {
                     Console.WriteLine("Enter your pin code");
                     string inputPin = Console.ReadLine();
+
+                    card = db.GetCard(inputCardNumber, inputPin);
+
                     if (i == PinTries)
                     {
-                        break;   //Låsa kortet 
+                        //Låsa kortet 
+
                         Environment.Exit(1);
                     }
-                    else if (db.GetCard(inputCardNumber, inputPin) != null)
+                    else if (card != null)
                     {
-                        // gå vidare
+                        break;
                     }
                 }
 
