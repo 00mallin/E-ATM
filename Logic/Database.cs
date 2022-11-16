@@ -11,6 +11,15 @@ public class Database
     public Database()
     {
         Connection = new(connectionString);
+        try
+        {
+            Connection.Open();
+            Connection.Close();
+        }
+        catch
+        {
+            throw new Exception(message: "Could not connect to database.");
+        }
     }
 
     /// <summary>
@@ -57,7 +66,7 @@ public class Database
     }
 
 
-    public Account GetAccount(string accountID)
+    public Account GetAccount(int accountID)
     {
         return Connection.QuerySingleOrDefault<Account>($"SELECT id, account_number AS AccountNumber, balance FROM account WHERE id = '{accountID}'");
     }
@@ -65,6 +74,11 @@ public class Database
     public Card GetCard(string card_number, string pin)
     {
         var row = Connection.QuerySingleOrDefault($"SELECT card.id AS cardId, card.card_number AS cardNumber, card.expiry_date AS expiryDate, card.is_valid AS isValid, card.account_id AS accountID, card.user_id AS userID, user.first_name AS firstName, user.last_name AS lastName FROM card INNER JOIN user ON card.user_id = user.id WHERE card.card_number = '{card_number}' AND card.pin = '{pin}'");
+
+        if (row != null)
+        {
+            return null;
+        }
 
         Card card = new();
         card.ID = row.cardId;
