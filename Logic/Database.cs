@@ -57,11 +57,12 @@ public class Database
 
     public Card GetCard(string card_number, string pin)
     {
-        var row = Connection.QuerySingleOrDefault($"SELECT card.id AS cardId, card.card_number AS cardNumber, card.expiry_date AS expiryDate, card.is_valid AS isValid, card.account_id AS accountID user.first_name AS firstName, user.last_name AS lastName FROM card INNER JOIN user ON card.user_id = user.id WHERE card.card_number = '{card_number}' AND card.pin = '{pin}'");
+        var row = Connection.QuerySingleOrDefault($"SELECT card.id AS cardId, card.card_number AS cardNumber, card.expiry_date AS expiryDate, card.is_valid AS isValid, card.account_id AS accountID, card.user_id AS userID, user.first_name AS firstName, user.last_name AS lastName FROM card INNER JOIN user ON card.user_id = user.id WHERE card.card_number = '{card_number}' AND card.pin = '{pin}'");
 
         Card card = new();
         card.ID = row.cardId;
         card.AccountID = row.accountID;
+        card.UserID = row.userID;
         card.CardNumber = row.cardNumber;
         card.CardHolder = $"{row.firstName} {row.lastName}";
         card.ExpiryDate = row.expiryDate;

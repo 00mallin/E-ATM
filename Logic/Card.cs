@@ -4,6 +4,7 @@ public class Card
 {
     public int ID { get; set; }
     public int AccountID { get; set; }
+    public int UserID { get; set; }
     public string CardNumber { get; set; }
     public string CardHolder { get; set; }
     public DateTime ExpiryDate { get; set; }

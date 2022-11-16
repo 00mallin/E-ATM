@@ -23,12 +23,13 @@ public class Account
     public List<Card> GetCards()
     {
         List<Card> cardsList = new();
-        var cardsFromDB = db.Connection.Query($"SELECT card.id AS cardId, card.card_number AS cardNumber, card.expiry_date AS expiryDate, card.is_valid AS isValid, user.first_name AS firstName, user.last_name AS lastName FROM card INNER JOIN user ON card.user_id = user.id WHERE card.account_id = {ID}").ToList();
+        var cardsFromDB = db.Connection.Query($"SELECT card.id AS cardId, card.card_number AS cardNumber, card.expiry_date AS expiryDate, card.is_valid AS isValid, card.user_id AS userID, user.first_name AS firstName, user.last_name AS lastName FROM card INNER JOIN user ON card.user_id = user.id WHERE card.account_id = {ID}").ToList();
 
         foreach (var row in cardsFromDB)
         {
             Card card = new();
             card.ID = row.cardId;
+            card.UserID = row.userID;
             card.CardNumber = row.cardNumber;
             card.CardHolder = $"{row.firstName} {row.lastName}";
             card.ExpiryDate = row.expiryDate;
