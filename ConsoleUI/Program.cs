@@ -129,6 +129,8 @@ internal class Program
 
         Account selectedAccount = userAccounts[num - 1];
 
+        Console.WriteLine("You have: " + selectedAccount.Balance + " kr in your account.");
+
         Console.Write("Input the amount you would like to insert: ");
         float input = float.Parse(Console.ReadLine());
 
@@ -143,6 +145,8 @@ internal class Program
         Console.Clear();
 
         Account selectedAccount = db.GetAccount(card.AccountID);
+
+        Console.WriteLine("You have: " + selectedAccount.Balance + " kr in your account.");
 
         Console.Write("Input the amount you would like to withdraw: ");
         float input = float.Parse(Console.ReadLine());
