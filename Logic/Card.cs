@@ -1,5 +1,3 @@
-using Dapper;
-
 namespace Logic;
 
 public class Card
