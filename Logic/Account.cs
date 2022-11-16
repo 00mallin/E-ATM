@@ -54,6 +54,7 @@ public class Account
             {
                 Balance += amount;
                 db.Connection.Execute($"UPDATE account SET account.balance = '{Balance}' WHERE id = '{ID}'");
+                LogTransaction(amount);
             }
             return true;
         }
@@ -68,9 +69,15 @@ public class Account
             {
                 Balance -= amount;
                 db.Connection.Execute($"UPDATE account SET account.balance = '{Balance}' WHERE id = '{ID}'");
+                LogTransaction(-(amount));
             }
             return true;
         }
         catch { return false; }
+    }
+
+    private void LogTransaction(float amount)
+    {
+        db.Connection.Execute($"INSERT INTO transaction(amount, date, account_id) VALUES ({amount}, {DateTime.Now}, {ID})");
     }
 }
