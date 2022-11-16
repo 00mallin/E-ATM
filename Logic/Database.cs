@@ -48,6 +48,13 @@ public class Database
         }
     }
 
+    public void LockCard(string cardNumber)
+    {
+        if(Connection.Execute($"UPDATE card SET is_valid = false WHERE card_number = {cardNumber}") < 1)
+        {
+            throw new Exception(message: "Could not update the database.");
+        }
+    }
 
 
     public Account GetAccount(string accountID)

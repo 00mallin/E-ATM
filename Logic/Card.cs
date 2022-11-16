@@ -14,16 +14,4 @@ public class Card
     public bool IsValid { get; set; }
 
     public Card(){}
-
-    public void LockCard()
-    {
-        if(db.Connection.Execute($"UPDATE card SET is_valid = false WHERE id = {ID}") > 0)
-        {
-            IsValid = false;
-        }
-        else
-        {
-            throw new Exception(message: "Could not update the database.");
-        }
-    }
 }
