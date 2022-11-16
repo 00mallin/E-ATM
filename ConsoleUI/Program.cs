@@ -56,3 +56,4 @@ internal class Program
         }
     }
 }
+//skapa en metod som hämtar ETT konto från databasen
