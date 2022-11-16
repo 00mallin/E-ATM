@@ -106,8 +106,6 @@ internal class Program
     {
         Console.Clear();
 
-
-
         List<Account> userAccounts = db.GetUserAccounts(card.UserID);
 
         for (int i = 0; i < userAccounts.Count; i++)
@@ -115,12 +113,23 @@ internal class Program
             Console.WriteLine($"{i + 1}. {userAccounts[i]}");
         }
 
+        Console.Write("Select account: ");
+        int num = Int32.Parse(Console.ReadLine());
+
+        if (num >= 0 && num > userAccounts.Count)
+        {
+            Console.WriteLine("Invalid selection.");
+            return;
+        }
+
+        Account selectedAccount = userAccounts[num - 1];
+
         Console.Write("Input the amount you would like to insert: ");
         float input = float.Parse(Console.ReadLine());
 
-        account.Deposit(input);
+        selectedAccount.Deposit(input);
 
-        account.ToString();
+        selectedAccount.ToString();
 
     }
 
@@ -128,11 +137,13 @@ internal class Program
     {
         Console.Clear();
 
+        Account selectedAccount = db.GetAccount(card.AccountID);
+
         Console.Write("Input the amount you would like to withdraw: ");
         float input = float.Parse(Console.ReadLine());
 
-        account.Withdraw(input);
+        selectedAccount.Withdraw(input);
 
-        account.ToString();
+        selectedAccount.ToString();
     }
 }
