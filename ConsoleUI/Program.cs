@@ -43,8 +43,7 @@ internal class Program
                     break;
 
                 case ConsoleKey.B:
-                    Console.Write("Your balance is: ");
-                    Console.ReadLine();
+                    Balance();
                     break;
 
                 case ConsoleKey.H:
@@ -154,5 +153,26 @@ internal class Program
         selectedAccount.Withdraw(input);
 
         selectedAccount.ToString();
+    }
+
+    static void Balance()
+    {
+        Console.Clear();
+
+        List<Account> userAccounts = db.GetUserAccounts(card.UserID);
+
+        for (int i = 0; i < userAccounts.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {userAccounts[i]}");
+        }
+        
+        while (true)
+        {
+            ConsoleKey input = Console.ReadKey(true).Key;
+            if (input == ConsoleKey.Enter)
+            {
+                break;
+            }
+        }
     }
 }
