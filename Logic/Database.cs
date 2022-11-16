@@ -36,7 +36,7 @@ public class Database
 
     public bool CheckCard(string CardNumber)
     {
-        var Cardfound = Connection.QuerySingleOrDefault($"SELECT COUNT(id) FROM card WHERE card_number = '{CardNumber}'"); //cardfound är en objekt 
+        var Cardfound = Connection.QuerySingleOrDefault($"SELECT id FROM card WHERE card_number = '{CardNumber}'"); //cardfound är en objekt 
 
         if (Cardfound != null)
         {
@@ -50,7 +50,7 @@ public class Database
 
     public void LockCard(string cardNumber)
     {
-        if(Connection.Execute($"UPDATE card SET is_valid = false WHERE card_number = {cardNumber}") < 1)
+        if (Connection.Execute($"UPDATE card SET is_valid = false WHERE card_number = {cardNumber}") < 1)
         {
             throw new Exception(message: "Could not update the database.");
         }
