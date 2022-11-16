@@ -3,15 +3,19 @@ using Logic;
 
 public class ErrorHandler
 {
-    public approved()
+    public int ReadInt(int amountChars)
     {
         while (true)
         {
-            if (db.CheckCard(inputCardNumber && inputPin))
-            {
-                
-            }
-        }
+            string inputString = Console.ReadLine();
+            int input;
 
+            try
+            {
+                input = int.Parse(inputString);
+                return input;
+            }
+            catch { }            
+        }
     }
 }
