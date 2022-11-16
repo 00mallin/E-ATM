@@ -7,15 +7,22 @@ public class ErrorHandler
     {
         while (true)
         {
-            string inputString = Console.ReadLine();
+            string inputString = Console.ReadLine().Trim();
             int input;
+
+            if (inputString.Length != amountChars)
+            {
+                continue;
+            }
 
             try
             {
                 input = int.Parse(inputString);
                 return input;
             }
-            catch { }            
+            catch
+            { }
+
         }
     }
 }
