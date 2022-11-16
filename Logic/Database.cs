@@ -36,16 +36,16 @@ public class Database
 
     public bool CheckCard(string CardNumber)
     {
-        var Cardfound = Connection.QuerySingleOrDefault($"SELECT COUNT(id) FROM card WHERE card_number = '{CardNumber}'");
+        var Cardfound = Connection.QuerySingleOrDefault($"SELECT COUNT(id) FROM card WHERE card_number = '{CardNumber}'"); //cardfound är en objekt 
 
-        if (Cardfound >= 1)
+        if (Cardfound != null)
         {
             return true;
         }
         else
         {
             return false;
-        } 
+        }
     }
 
 
@@ -57,7 +57,7 @@ public class Database
 
     public Card GetCard(string card_number, string pin)
     {
-         var row = Connection.QuerySingleOrDefault($"SELECT card.id AS cardId, card.card_number AS cardNumber, card.expiry_date AS expiryDate, card.is_valid AS isValid, card.account_id AS accountID user.first_name AS firstName, user.last_name AS lastName FROM card INNER JOIN user ON card.user_id = user.id WHERE card.card_number = '{card_number}' AND card.pin = '{pin}'");
+        var row = Connection.QuerySingleOrDefault($"SELECT card.id AS cardId, card.card_number AS cardNumber, card.expiry_date AS expiryDate, card.is_valid AS isValid, card.account_id AS accountID user.first_name AS firstName, user.last_name AS lastName FROM card INNER JOIN user ON card.user_id = user.id WHERE card.card_number = '{card_number}' AND card.pin = '{pin}'");
 
         Card card = new();
         card.ID = row.cardId;
