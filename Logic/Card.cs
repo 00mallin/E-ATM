@@ -1,5 +1,3 @@
-using Dapper;
-
 namespace Logic;
 
 public class Card
@@ -14,15 +12,4 @@ public class Card
     public bool IsValid { get; set; }
 
     public Card(){}
-
-    public bool LockCard()
-    {
-        if(db.Connection.Execute($"UPDATE card SET is_valid = false WHERE id = {ID}") > 0)
-        {
-            IsValid = false;
-            return true;
-        }
-
-        return false;
-    }
 }
