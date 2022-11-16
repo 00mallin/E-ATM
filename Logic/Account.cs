@@ -1,6 +1,7 @@
+using Dapper;
+
 namespace Logic;
 
-using Dapper;
 
 public class Account
 {
