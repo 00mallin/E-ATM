@@ -9,47 +9,7 @@ internal class Program
 
     private static void Main(string[] args)
     {
-        while (card == null)
-        {
-            // Gets card number
-            Console.Clear();
-            Console.WriteLine("Enter your card number: ");
-            string inputCardNumber = Console.ReadLine();
-
-
-            // Gets pin code
-            if (db.CheckCard(inputCardNumber))
-            {
-                // If pin code is wrong
-                // TODO lås kortet ifall användaren gjort 3 försök,
-                // låt annars användaren försöka igen
-                for (int i = 0; i < PinTries; i++)
-                {
-                    Console.WriteLine("Enter your pin code");
-                    string inputPin = Console.ReadLine();
-
-                    card = db.GetCard(inputCardNumber, inputPin);
-
-                    if (i == PinTries)
-                    {
-                        //Låsa kortet 
-
-                        Environment.Exit(1);
-                    }
-                    else if (card != null)
-                    {
-                        break;
-                    }
-                }
-
-            }
-            else
-            {
-                // If the card number doesn't exist
-                continue;
-            }
-        }
-
+        SingIn();
 
         bool running = true;
         while (running)
@@ -101,6 +61,51 @@ internal class Program
         }
     } //Main
 
+    private static void SingIn()
+    {
+        while (card == null)
+        {
+            // Gets card number
+            Console.Clear();
+            Console.WriteLine("Enter your card number: ");
+            string inputCardNumber = Console.ReadLine();
+
+
+            // Gets pin code
+            if (db.CheckCard(inputCardNumber))
+            {
+                // If pin code is wrong
+                // TODO lås kortet ifall användaren gjort 3 försök,
+                // låt annars användaren försöka igen
+                for (int i = 0; i < PinTries; i++)
+                {
+                    Console.Clear();
+
+                    Console.WriteLine("Enter your pin code");
+                    string inputPin = Console.ReadLine();
+
+                    card = db.GetCard(inputCardNumber, inputPin);
+
+                    if (i == PinTries)
+                    {
+                        //Låsa kortet 
+
+                        Environment.Exit(1);
+                    }
+                    else if (card != null)
+                    {
+                        break;
+                    }
+                }
+
+            }
+            else
+            {
+                // If the card number doesn't exist
+                continue;
+            }
+        }
+    }
 
     static void InsertMoney()
     {
