@@ -50,11 +50,11 @@ public class Account
     {
         try
         {
-            if (amount > 0.0)
+            if (amount > 0)
             {
                 Balance += amount;
                 db.Connection.Execute($"UPDATE account SET account.balance = '{Balance}' WHERE id = '{ID}'");
-                LogTransaction(amount);
+                this.LogTransaction(amount);
             }
             return true;
         }
@@ -69,7 +69,7 @@ public class Account
             {
                 Balance -= amount;
                 db.Connection.Execute($"UPDATE account SET account.balance = '{Balance}' WHERE id = '{ID}'");
-                LogTransaction(-(amount));
+                this.LogTransaction(-(amount));
             }
             return true;
         }
@@ -78,7 +78,7 @@ public class Account
 
     private void LogTransaction(float amount)
     {
-        if (db.Connection.Execute($"INSERT INTO transaction(amount, date, account_id) VALUES ({amount}, {DateTime.Now}, {ID})") < 1)
+        if (db.Connection.Execute($"INSERT INTO transaction(amount, date, account_id) VALUES ('{amount}', '{DateTime.Now}', '{ID}')") < 1)
         {
             throw new Exception(message: "Couldn't log the transaction!");
         } 
