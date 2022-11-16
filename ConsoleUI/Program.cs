@@ -64,7 +64,7 @@ internal class Program
 
             var keypress = Console.ReadKey().Key;
 
-            Console.WriteLine("Your chouce is: " + keypress.ToString() + "\nPleas whit");
+            Console.WriteLine("Your choice is: " + keypress.ToString() + "\nPlease wait");
             Thread.Sleep(2000);
 
             switch (keypress)
@@ -114,7 +114,7 @@ internal class Program
     {
         Console.Clear();
 
-        Console.Write("Input the amount you would like to draw: ");
+        Console.Write("Input the amount you would like to withdraw: ");
         float input = float.Parse(Console.ReadLine());
 
         account.Withdraw(input);
