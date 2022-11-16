@@ -10,11 +10,11 @@ public class Account
     public float Balance { get; set; }
     public string AccountNumber { get; set; }
 
-    public Account(){}
+    public Account() { }
 
     public override string ToString()
     {
-        return Balance + " " + AccountNumber;
+        return "Konto nummer: " + AccountNumber + "\n   Belopp: " + Balance;
     }
     public List<User> GetUsers()
     {

@@ -9,7 +9,7 @@ internal class Program
 
     private static void Main(string[] args)
     {
-        while (true)
+        while (card == null)
         {
             // Gets card number
             Console.Clear();
@@ -105,6 +105,15 @@ internal class Program
     static void InsertMoney()
     {
         Console.Clear();
+
+
+
+        List<Account> userAccounts = db.GetUserAccounts(card.UserID);
+
+        for (int i = 0; i < userAccounts.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {userAccounts[i]}");
+        }
 
         Console.Write("Input the amount you would like to insert: ");
         float input = float.Parse(Console.ReadLine());
