@@ -35,7 +35,7 @@ internal class Program
             var keypress = Console.ReadKey(true).Key;
 
             Console.WriteLine("Your choice is: " + keypress.ToString() + "\nPlease wait");
-            Thread.Sleep(2000);
+            Thread.Sleep(1500);
 
             // Handles menu selection
             switch (keypress)
