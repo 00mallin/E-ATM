@@ -2,9 +2,11 @@ using Logic;
 
 public class WithdrawUI
 {
-    public static void Show()
+    public static void Show(Card card)
     {
         Console.Clear();
+
+        Database db = new();
 
         Account selectedAccount = db.GetAccount(card.AccountID);
 
@@ -16,5 +18,7 @@ public class WithdrawUI
         selectedAccount.Withdraw(input);
 
         selectedAccount.ToString();
+
     }
+
 }
