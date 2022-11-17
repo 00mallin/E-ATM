@@ -12,20 +12,11 @@ public class ErrorHandler
         {
             Console.Write(prompt);
             string inputString = Console.ReadLine().Trim();
-            double input;
 
             if ((inputString.Length != amountChars && amountChars != -1) || string.IsNullOrWhiteSpace(inputString))
             {
                 continue;
             }
-
-            // Check if it's a double first
-            try 
-            {
-                input = Convert.ToDouble(inputString);
-                return inputString;
-            }
-            catch{}
 
             // Check if the string only contains integers
             bool onlyInts = true;
@@ -43,6 +34,29 @@ public class ErrorHandler
             {
                 return inputString;
             }
+        }
+    }
+
+    public static float ReadFloat(string prompt)
+    {
+        while (true)
+        {
+            Console.Write(prompt);
+            string inputString = Console.ReadLine().Trim();
+            float input;
+
+            if (string.IsNullOrWhiteSpace(inputString))
+            {
+                continue;
+            }
+
+            // Check if it's a float first
+            try
+            {
+                input = float.Parse(inputString);
+                return input;
+            }
+            catch { }
         }
     }
 }
