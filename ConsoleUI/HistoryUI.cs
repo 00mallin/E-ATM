@@ -15,6 +15,7 @@ public class HistoryUI
             Console.WriteLine($"{i+1}. {transactionsList[i]}");
         }
 
+        Console.Write(Environment.NewLine + "Press any key to return...");
         Console.ReadKey();
     }
 }
