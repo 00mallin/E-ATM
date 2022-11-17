@@ -6,6 +6,6 @@ public class Transactions
 
     public override string ToString()
     {
-        return ID + ".  Amount: " + Amount + " kr  " + Date;
+        return "Amount: " + Amount + " kr  " + Date.ToShortDateString();
     }
 }
