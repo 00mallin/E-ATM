@@ -8,14 +8,13 @@ public class HistoryUI
         Database db = new();
 
         Account selectedAccount = db.GetAccount(card.AccountID);
-        Transactions accountTransaction = new();
+        List<Transactions> transactionsList = selectedAccount.GetTransactions();
 
-        foreach (var item in selectedAccount.GetTransactions())
+        for (int i = 0; i < transactionsList.Count; i++)
         {
-            Console.Write(item);
-            accountTransaction.ToString();
-            Console.ReadKey();
+            Console.WriteLine($"{i+1}. {transactionsList[i]}");
         }
 
+        Console.ReadKey();
     }
 }
