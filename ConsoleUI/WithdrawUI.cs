@@ -12,13 +12,13 @@ public class WithdrawUI
 
         Console.WriteLine("You have: " + selectedAccount.Balance + " kr in your account.");
 
-        Console.Write("Input the amount you would like to withdraw: ");
-        float input = float.Parse(Console.ReadLine());
+        float input = ErrorHandler.ReadFloat("Withdrawal amount: ");
 
         selectedAccount.Withdraw(input);
 
-        selectedAccount.ToString();
-
+        Console.WriteLine($"Success! Your account balance: {selectedAccount.Balance} kr");
+        Console.Write("Press any key to return to menu...");
+        Console.ReadKey();
     }
 
 }
