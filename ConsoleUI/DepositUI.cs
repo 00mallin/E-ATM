@@ -16,12 +16,11 @@ public class DepositUI
                 Console.WriteLine($"{i + 1}. {userAccounts[i]}");
             }
 
-            Console.Write("Select account: ");
-            int num = Int32.Parse(Console.ReadLine());
+            int num = int.Parse(ErrorHandler.ReadNumber("Select account: ", -1));
 
             if (num <= 0 || num > userAccounts.Count)
             {
-                Console.WriteLine("Invalid selection. Press any key to try again.");
+                Console.Write("Invalid selection. Press any key to try again...");
                 Console.ReadKey();
                 continue;
             }
@@ -32,8 +31,7 @@ public class DepositUI
             Console.Clear();
             Console.WriteLine("You have: " + selectedAccount.Balance + " kr in your account.");
 
-            Console.Write("Input the amount you would like to insert: ");
-            float input = float.Parse(Console.ReadLine());
+            float input = ErrorHandler.ReadFloat("Deposit amount: ");
             Console.Clear();
 
             selectedAccount.Deposit(input);
