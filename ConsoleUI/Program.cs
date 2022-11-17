@@ -2,7 +2,6 @@
 
 internal class Program
 {
-    static Account account;
     static Card card;
     static Database db = new();
     private static void Main(string[] args)
