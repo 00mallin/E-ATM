@@ -15,7 +15,11 @@ public class ErrorHandler
 
             try
             {
-                input = int.Parse(inputString);
+                foreach (Char c in inputString)
+                {
+                    input = Convert.ToInt32(c);
+                }
+
                 return inputString;
             }
             catch{ }
