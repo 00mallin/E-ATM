@@ -7,6 +7,7 @@ internal class Program
     static Database db = new();
     private static void Main(string[] args)
     {
+        // Verifies card
         card = VerifyCardUI.Show();
 
         if (card == null) // Exit if card is invalid
@@ -24,22 +25,22 @@ internal class Program
             Console.WriteLine("\t----- Welcome to your local bank -----");
             Console.WriteLine
             (
-            "[I]nsert\n" + // TODO Använd db.GetUserAccounts() för att hämta alla konton
-            "[W]ithdraw\n" + // TODO Använd db.GetAccount() för att endast hämta kontot som pengarna ska dras ifrån
-            "[B]alance\n" + // TODO Visa alla användarens konton tillsammans med deras saldo
-            "[H]istory\n" + // TODO Visa transaktioner för de olika kontona
-            "[E]xit" // TODO Ta användaren tillbaka till första sidan för att kunna mata in nytt kort
-                     // Eller avsluta applikationen
+            "[D]eposit\n" + // Show DepositUI
+            "[W]ithdraw\n" + // Show WithdrawUI
+            "[B]alance\n" + // Show BalanceUI
+            "[H]istory\n" + // Show HistoryUI
+            "[E]xit" // Exit application
             );
 
-            var keypress = Console.ReadKey().Key;
+            var keypress = Console.ReadKey(true).Key;
 
             Console.WriteLine("Your choice is: " + keypress.ToString() + "\nPlease wait");
-            Thread.Sleep(2000);
+            Thread.Sleep(1500);
 
+            // Handles menu selection
             switch (keypress)
             {
-                case ConsoleKey.I:
+                case ConsoleKey.D:
                     DepositUI.Show(card);
                     break;
 
