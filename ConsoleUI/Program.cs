@@ -32,7 +32,7 @@ internal class Program
             "[E]xit" // Exit application
             );
 
-            var keypress = Console.ReadKey().Key;
+            var keypress = Console.ReadKey(true).Key;
 
             Console.WriteLine("Your choice is: " + keypress.ToString() + "\nPlease wait");
             Thread.Sleep(2000);
