@@ -9,13 +9,14 @@ internal class Program
     {
         card = VerifyCardUI.Show();
 
-        if (card == null)
+        if (card == null) // Exit if card is invalid
         {
             Console.WriteLine("Card couldn't be verified!");
             Thread.Sleep(3000);
             Environment.Exit(0);
         }
 
+        // Menu
         while (true)
         {
             Console.Clear();
@@ -39,15 +40,15 @@ internal class Program
             switch (keypress)
             {
                 case ConsoleKey.I:
-                    InsertMoney();
+                    DepositUI.Show(card);
                     break;
 
                 case ConsoleKey.W:
-                    WithdrawMoney();
+                    WithdrawUI.Show(card);
                     break;
 
                 case ConsoleKey.B:
-                    Balance();
+                    BalanceUI.Show(card);
                     break;
 
                 case ConsoleKey.H:
@@ -55,6 +56,7 @@ internal class Program
                     break;
 
                 case ConsoleKey.E:
+                    Environment.Exit(0);
                     return;
 
                 default:
@@ -63,35 +65,4 @@ internal class Program
             }
         }
     } //Main
-
-    static void InsertMoney()
-    {
-        
-    }
-
-    static void WithdrawMoney()
-    {
-        
-    }
-
-    static void Balance()
-    {
-        Console.Clear();
-
-        List<Account> userAccounts = db.GetUserAccounts(card.UserID);
-
-        for (int i = 0; i < userAccounts.Count; i++)
-        {
-            Console.WriteLine($"{i + 1}. {userAccounts[i]}");
-        }
-        
-        while (true)
-        {
-            ConsoleKey input = Console.ReadKey(true).Key;
-            if (input == ConsoleKey.Enter)
-            {
-                break;
-            }
-        }
-    }
 }
