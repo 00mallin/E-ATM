@@ -54,6 +54,12 @@ public class ErrorHandler
             try
             {
                 input = float.Parse(inputString);
+
+                if (input < 0)
+                {
+                    continue;
+                }
+                
                 return input;
             }
             catch { }
