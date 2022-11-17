@@ -66,51 +66,12 @@ internal class Program
 
     static void InsertMoney()
     {
-        Console.Clear();
-
-        List<Account> userAccounts = db.GetUserAccounts(card.UserID);
-
-        for (int i = 0; i < userAccounts.Count; i++)
-        {
-            Console.WriteLine($"{i + 1}. {userAccounts[i]}");
-        }
-
-        Console.Write("Select account: ");
-        int num = Int32.Parse(Console.ReadLine());
-
-        if (num >= 0 && num > userAccounts.Count)
-        {
-            Console.WriteLine("Invalid selection.");
-            return;
-        }
-
-        Account selectedAccount = userAccounts[num - 1];
-
-        Console.WriteLine("You have: " + selectedAccount.Balance + " kr in your account.");
-
-        Console.Write("Input the amount you would like to insert: ");
-        float input = float.Parse(Console.ReadLine());
-
-        selectedAccount.Deposit(input);
-
-        selectedAccount.ToString();
-
+        
     }
 
     static void WithdrawMoney()
     {
-        Console.Clear();
-
-        Account selectedAccount = db.GetAccount(card.AccountID);
-
-        Console.WriteLine("You have: " + selectedAccount.Balance + " kr in your account.");
-
-        Console.Write("Input the amount you would like to withdraw: ");
-        float input = float.Parse(Console.ReadLine());
-
-        selectedAccount.Withdraw(input);
-
-        selectedAccount.ToString();
+        
     }
 
     static void Balance()
