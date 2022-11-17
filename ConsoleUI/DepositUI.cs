@@ -5,7 +5,8 @@ public class DepositUI
     public static void Show()
     {
         Console.Clear();
-
+        Database db = new();
+        Card card = new Card();
         List<Account> userAccounts = db.GetUserAccounts(card.UserID);
 
         for (int i = 0; i < userAccounts.Count; i++)
