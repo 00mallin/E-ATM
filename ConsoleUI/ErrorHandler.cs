@@ -1,28 +1,48 @@
 public class ErrorHandler
 {
-    public static string ReadInt(string prompt, int amountChars)
+    /// <summary>
+    /// Checks if input is a number
+    /// </summary>
+    /// <param name="prompt">Prompt message to user</param>
+    /// <param name="amountChars">-1 = unspecified amount</param>
+    /// <returns></returns>
+    public static string ReadNumber(string prompt, int amountChars)
     {
         while (true)
         {
             Console.Write(prompt);
             string inputString = Console.ReadLine().Trim();
-            int input;
+            double input;
 
-            if (inputString.Length != amountChars)
+            if ((inputString.Length != amountChars && amountChars != -1) || string.IsNullOrWhiteSpace(inputString))
             {
                 continue;
             }
 
-            try
+            // Check if it's a double first
+            try 
             {
-                foreach (Char c in inputString)
-                {
-                    input = Convert.ToInt32(c);
-                }
-
+                input = Convert.ToDouble(inputString);
                 return inputString;
             }
-            catch{ }
+            catch{}
+
+            // Check if the string only contains integers
+            bool onlyInts = true;
+
+            foreach (char c in inputString)
+            {
+                if(!Char.IsDigit(c))
+                {
+                    onlyInts = false;
+                    break;
+                }
+            }
+
+            if(onlyInts)
+            {
+                return inputString;
+            }
         }
     }
 }
