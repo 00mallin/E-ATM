@@ -52,7 +52,7 @@ internal class Program
                     break;
 
                 case ConsoleKey.H:
-                    Console.Write("History of your transactions: ");
+                    HistoryUI.Show(card);
                     break;
 
                 case ConsoleKey.E:
