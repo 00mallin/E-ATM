@@ -12,8 +12,7 @@ public class VerifyCardUI
         {
             // Gets card number
             Console.Clear();
-            Console.WriteLine("Enter your card number: ");
-            string inputCardNumber = Console.ReadLine();
+            string inputCardNumber = ErrorHandler.ReadInt("Enter your card number: ", 4);
 
 
             // Gets and verifies pin input
@@ -24,8 +23,7 @@ public class VerifyCardUI
                 {
                     Console.Clear();
 
-                    Console.WriteLine("Enter your pin code");
-                    string inputPin = Console.ReadLine();
+                    string inputPin = ErrorHandler.ReadInt("Enter your pin code: ", 4);
 
                     card = db.GetCard(inputCardNumber, inputPin);
 

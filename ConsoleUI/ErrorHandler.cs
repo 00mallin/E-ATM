@@ -1,9 +1,10 @@
 public class ErrorHandler
 {
-    public int ReadInt(int amountChars)
+    public static string ReadInt(string prompt, int amountChars)
     {
         while (true)
         {
+            Console.Write(prompt);
             string inputString = Console.ReadLine().Trim();
             int input;
 
@@ -15,11 +16,9 @@ public class ErrorHandler
             try
             {
                 input = int.Parse(inputString);
-                return input;
+                return inputString;
             }
-            catch
-            { }
-
+            catch{ }
         }
     }
 }
