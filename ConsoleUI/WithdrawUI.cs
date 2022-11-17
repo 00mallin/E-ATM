@@ -14,9 +14,15 @@ public class WithdrawUI
 
         float input = ErrorHandler.ReadFloat("Withdrawal amount: ");
 
-        selectedAccount.Withdraw(input);
+        if (selectedAccount.Withdraw(input))
+        {
+            Console.WriteLine($"Success! Your account balance: {selectedAccount.Balance} kr");
+        }
+        else
+        {
+            Console.WriteLine("Withdrawal wasn't succesful!");
+        }
 
-        Console.WriteLine($"Success! Your account balance: {selectedAccount.Balance} kr");
         Console.Write("Press any key to return to menu...");
         Console.ReadKey();
     }
