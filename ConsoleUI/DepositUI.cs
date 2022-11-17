@@ -2,11 +2,10 @@ using Logic;
 
 public class DepositUI 
 {
-    public static void Show()
+    public static void Show(Card card)
     {
         Console.Clear();
         Database db = new();
-        Card card = new();
         List<Account> userAccounts = db.GetUserAccounts(card.UserID);
 
         for (int i = 0; i < userAccounts.Count; i++)
