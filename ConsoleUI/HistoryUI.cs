@@ -16,7 +16,7 @@ public class HistoryUI
             Console.WriteLine($"{i + 1}. {transactionsList[i]}");
         }
 
-        Console.WriteLine("\nTryck ENTER för att tillbaka till huvudet meny");
+        Console.Write("\nPress enter to return to menu...");
 
         while (true)
         {
@@ -27,6 +27,5 @@ public class HistoryUI
             }
         }
 
-        Console.ReadKey();
     }
 }
