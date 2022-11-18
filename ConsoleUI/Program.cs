@@ -61,7 +61,7 @@ internal class Program
 
                 default:
                     Console.WriteLine("There is no choice matching your input, please try again");
-                    Console.ReadLine();
+                    Thread.Sleep(4000);
                     break;
             }
         }
