@@ -2,7 +2,6 @@ namespace Logic;
 
 public class Card
 {
-    private static Database db = new();
     public int ID { get; set; }
     public int AccountID { get; set; }
     public int UserID { get; set; }
@@ -11,5 +10,5 @@ public class Card
     public DateTime ExpiryDate { get; set; }
     public bool IsValid { get; set; }
 
-    public Card(){}
+    public Card() { }
 }
