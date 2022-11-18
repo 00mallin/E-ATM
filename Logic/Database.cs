@@ -45,15 +45,25 @@ public class Database
 
     public bool CheckCard(string CardNumber)
     {
-        var Cardfound = Connection.QuerySingleOrDefault($"SELECT id FROM card WHERE card_number = '{CardNumber}'"); //cardfound är en objekt 
+        var cardfound = Connection.QuerySingleOrDefault($"SELECT id, expiry_date, is_valid FROM card WHERE card_number = '{CardNumber}'"); //cardfound är en objekt 
 
-        if (Cardfound != null)
+        if (cardfound == null)
         {
-            return true;
+            return false;
+        }
+        
+        if (cardfound.expiry_date < DateTime.Now && cardfound.is_valid)
+        {
+            Connection.Execute($"UPDATE card SET is_valid = false WHERE id = {cardfound.id}");
+            return false;
+        }
+        else if (!cardfound.is_valid)
+        {
+            return false;
         }
         else
         {
-            return false;
+            return true;
         }
     }
 
