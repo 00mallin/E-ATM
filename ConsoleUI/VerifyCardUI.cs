@@ -44,6 +44,12 @@ public class VerifyCardUI
                     return null;
                 }
             }
+            else
+            {
+                Console.WriteLine("Your card is invalid!");
+                Thread.Sleep(2000);
+                Environment.Exit(0);
+            }
         }
 
         return null;
