@@ -11,13 +11,22 @@ public class HistoryUI
         List<Transactions> transactionsList = selectedAccount.GetTransactions();
 
 
-
         for (int i = 0; i < transactionsList.Count; i++)
         {
             Console.WriteLine($"{i + 1}. {transactionsList[i]}");
         }
 
-        Console.Write(Environment.NewLine + "Press any key to return...");
+        Console.WriteLine("\nTryck ENTER för att tillbaka till huvudet meny");
+
+        while (true)
+        {
+            ConsoleKey input = Console.ReadKey(true).Key;
+            if (input == ConsoleKey.Enter)
+            {
+                break;
+            }
+        }
+
         Console.ReadKey();
     }
 }
