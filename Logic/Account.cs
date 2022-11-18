@@ -70,8 +70,9 @@ public class Account
                 Balance -= amount;
                 db.Connection.Execute($"UPDATE account SET account.balance = '{Balance}' WHERE id = '{ID}'");
                 this.LogTransaction(-(amount));
+                return true;
             }
-            return true;
+            return false;
         }
         catch { return false; }
     }
