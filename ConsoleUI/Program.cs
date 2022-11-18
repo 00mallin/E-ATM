@@ -21,7 +21,7 @@ internal class Program
         {
             Console.Clear();
 
-            Console.WriteLine("\t----- Welcome to your local bank -----");
+            Console.WriteLine("\t----- Welcome to your local ATM -----");
             Console.WriteLine
             (
             "[D]eposit\n" + // Show DepositUI
