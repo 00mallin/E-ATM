@@ -8,26 +8,16 @@ public class HistoryUI
         Database db = new();
 
         Account selectedAccount = db.GetAccount(card.AccountID);
-        Transactions accountTransaction = new();
+        List<Transactions> transactionsList = selectedAccount.GetTransactions();
 
-        foreach (Transactions account in selectedAccount.GetTransactions())
+
+
+        for (int i = 0; i < transactionsList.Count; i++)
         {
-            Console.Write(account);
+            Console.WriteLine($"{i + 1}. {transactionsList[i]}");
         }
 
-
-        while (true)
-        {
-            Console.WriteLine("\nTryck ENTER för att tillbaka till huvudet meny");
-            ConsoleKey input = Console.ReadKey(true).Key;
-            if (input == ConsoleKey.Enter)
-            {
-                break;
-            }
-        }
-        accountTransaction.ToString();
-
-
-
+        Console.Write(Environment.NewLine + "Press any key to return...");
+        Console.ReadKey();
     }
 }
