@@ -29,7 +29,7 @@ public class Database
     public List<Account> GetUserAccounts(int userID)
     {
         List<Account> listAccounts = new();
-        var accounts = Connection.Query($"SELECT account.id AS accountId, account.account_number AS accountNumber, account.balance as balance FROM account INNER JOIN account_user ON account.id = account_user.account_id INNER JOIN user ON account_user.user_id = user.id INNER JOIN card ON account.id = card.account_id WHERE account_user.user_id = {userID}").ToList();
+        var accounts = Connection.Query($"SELECT account.id AS accountId, account.account_number AS accountNumber, account.balance as balance FROM account INNER JOIN account_user ON account.id = account_user.account_id INNER JOIN user ON account_user.user_id = user.id WHERE account_user.user_id = {userID}").ToList();
 
         foreach (var row in accounts)
         {
