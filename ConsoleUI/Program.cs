@@ -11,7 +11,7 @@ internal class Program
 
         if (card == null) // Exit if card is invalid
         {
-            Console.WriteLine("Card couldn't be verified!");
+            Console.WriteLine("Too many tries! Your card is locked!");
             Thread.Sleep(3000);
             Environment.Exit(0);
         }
