@@ -23,8 +23,16 @@ public class WithdrawUI
             Console.WriteLine("Withdrawal wasn't succesful!");
         }
 
-        Console.Write("Press any key to return to menu...");
-        Console.ReadKey();
+        Console.Write("\nPress enter to return to menu...");
+
+        while (true)
+        {
+            ConsoleKey enter = Console.ReadKey(true).Key;
+            if (enter == ConsoleKey.Enter)
+            {
+                break;
+            }
+        }
     }
 
 }
