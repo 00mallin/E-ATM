@@ -14,14 +14,8 @@ public class BalanceUI
         {
             Console.WriteLine($"{i + 1}. {userAccounts[i]}");
         }
-        
-        while (true)
-        {
-            ConsoleKey input = Console.ReadKey(true).Key;
-            if (input == ConsoleKey.Enter)
-            {
-                break;
-            }
-        }
+
+        Enter pressEnter = new();
+        pressEnter.PressEnter();
     }
 }

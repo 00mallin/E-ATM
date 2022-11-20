@@ -1,6 +1,6 @@
 using Logic;
 
-public class DepositUI 
+public class DepositUI
 {
     public static void Show(Card card)
     {
@@ -36,9 +36,10 @@ public class DepositUI
 
             selectedAccount.Deposit(input);
 
+
             Console.WriteLine($"Success! Your account balance: {selectedAccount.Balance} kr");
-            Console.Write("Press any key to return to menu...");
-            Console.ReadKey();
+            Enter pressEnter = new();
+            pressEnter.PressEnter();
             break;
         }
     }

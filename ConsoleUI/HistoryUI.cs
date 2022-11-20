@@ -16,16 +16,8 @@ public class HistoryUI
             Console.WriteLine($"{i + 1}. {transactionsList[i]}");
         }
 
-        Console.Write("\nPress enter to return to menu...");
-
-        while (true)
-        {
-            ConsoleKey input = Console.ReadKey(true).Key;
-            if (input == ConsoleKey.Enter)
-            {
-                break;
-            }
-        }
+        Enter pressEnter = new();
+        pressEnter.PressEnter();
 
     }
 }
