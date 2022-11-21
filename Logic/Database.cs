@@ -14,7 +14,6 @@ public class Database
         try
         {
             Connection.Open();
-            Connection.Close();
         }
         catch
         {
@@ -51,7 +50,7 @@ public class Database
         {
             return false;
         }
-        
+
         if (cardfound.expiry_date < DateTime.Now && cardfound.is_valid)
         {
             Connection.Execute($"UPDATE card SET is_valid = false WHERE id = {cardfound.id}");
