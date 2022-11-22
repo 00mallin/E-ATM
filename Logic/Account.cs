@@ -14,7 +14,7 @@ public class Account
 
     public override string ToString()
     {
-        return "Konto nummer: " + AccountNumber + "\n   Belopp: " + Balance;
+        return "Account number: " + AccountNumber + "\n   Balance: " + Balance;
     }
     public List<User> GetUsers()
     {
